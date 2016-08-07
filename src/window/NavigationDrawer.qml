@@ -22,7 +22,7 @@ PopupBase {
     id: navDrawer
     objectName: "navDrawer"
 
-    overlayLayer: "dialogOverlayLayer"
+    overlayLayer: fixed ? "" : "dialogOverlayLayer"
     overlayColor: Qt.rgba(0, 0, 0, 0.3)
 
     width: Math.min(parent.width - 1 * Device.gridUnit * Units.dp, 5 * Device.gridUnit * Units.dp)
@@ -46,26 +46,48 @@ PopupBase {
 
     property string mode: "left" // or "right"
 
+    property string menuTitle: "Navigation Drawer"
+
     property alias enabled: action.visible
+
+    property bool fixed: false
+
+    property int elevation: fixed ? -1 : 3
 
     readonly property Action action: action
 
     onEnabledChanged: {
-        if (!enabled)
+        if (!enabled && !fixed)
             close()
+    }
+
+    Component.onCompleted: {
+        if(fixed) navDrawer.toggle()
     }
 
     Action {
         id: action
         iconName: "navigation/menu"
-        name: "Navigation Drawer"
+        name: menuTitle
         onTriggered: navDrawer.toggle()
     }
 
     View {
+        id: menuView
         anchors.fill: parent
         fullHeight: true
-        elevation: 3
+        elevation: elevation
         backgroundColor: "white"
+    }
+
+    View {
+        id: menuDelimiter
+        anchors{
+            left: menuView.right
+        }
+        height: menuView.height
+        width: dp(1)
+        elevation: elevation
+        backgroundColor: "#d5d5d5"
     }
 }

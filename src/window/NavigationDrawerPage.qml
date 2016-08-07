@@ -29,7 +29,15 @@ Page {
         navDrawer.close()
     }
 
-    onNavDrawerChanged: navDrawer.parent = navPage
+    onNavDrawerChanged: {
+        navDrawer.anchors.topMargin = dp(48)
+//        topMargin: fixed ? 192 : 0
+        navDrawer.parent = navPage
+
+        if(navDrawer.fixed){
+            mainContent.anchors.leftMargin = 240
+        }
+    }
 
     onPageChanged: stackView.push({ item: page, replace: true })
 

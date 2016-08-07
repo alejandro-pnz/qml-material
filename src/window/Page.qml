@@ -112,6 +112,12 @@ FocusScope {
     property Item rightSidebar
 
     /*!
+       \qmlproperty Item     mainContent
+       The main content of the page.
+     */
+	property Item mainContent
+
+    /*!
        The index of the selected tab. This will be an index from the \l tabs
        property.
      */
@@ -242,6 +248,8 @@ FocusScope {
             left: parent.left
             right: rightSidebarContent.left
         }
+		
+        children: [mainContent]
     }
 
     Item {
