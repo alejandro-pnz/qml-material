@@ -42,6 +42,22 @@ FocusScope {
      */
     property int bottomMargin: 0
 
+    function getHours(){
+        if(internal.timePicked == undefined){
+            return -1;
+        } else {
+            return internal.timePicked.getHours()
+        }
+    }
+
+    function getMinutes(){
+        if(internal.timePicked == undefined){
+            return -1;
+        } else {
+            return internal.timePicked.getMinutes()
+        }
+    }
+
     Keys.onUpPressed: {
         var date = internal.timePicked
 

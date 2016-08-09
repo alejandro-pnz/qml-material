@@ -30,6 +30,34 @@ Controls.Calendar {
     property bool isLandscape: false
     property int dayAreaBottomMargin : 0
 
+    property var date: undefined
+
+    // QML's date type extends Javascript's Date.
+    // http://www.w3schools.com/jsref/jsref_obj_date.asp
+    function getDate(){
+        if(date == undefined){
+            return -1;
+        } else {
+            return date.getDate();
+        }
+    }
+
+    function getMonth(){
+        if(date == undefined){
+            return -1;
+        } else {
+            return date.getMonth();
+        }
+    }
+
+    function getFullYear(){
+        if(date == undefined){
+            return -1;
+        } else {
+            return date.getFullYear();
+        }
+    }
+
     style: CalendarStyle {
         gridVisible: false
 
@@ -455,6 +483,8 @@ Controls.Calendar {
                             function selectedDateChanged() {
                                 if (model !== undefined && model.locale !== undefined) {
                                     currentIndex = model.indexAt(control.selectedDate);
+                                        console.log("Date:", control.selectedDate)
+                                        date = control.selectedDate
                                 }
                             }
 
