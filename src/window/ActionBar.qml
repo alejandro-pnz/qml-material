@@ -11,8 +11,11 @@
 
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
+import QtQuick.Controls 1.3
 import Material 0.3
 import Material.ListItems 0.1 as ListItem
+import QtQuick.Controls.Styles 1.3 as Styles
+import QtQuick.Controls.Styles.Material 0.1 as MaterialStyle
 
 /*!
    \qmltype ActionBar
@@ -93,6 +96,8 @@ Item {
        other view below the action bar that you want to appear as part of the action bar.
      */
     property int elevation: 2
+
+    property alias sectionTaskTabView: sectionTabView
 
     /*!
        \internal
@@ -335,8 +340,28 @@ Item {
         anchors {
             top: actionsRow.bottom
             left: label.left
-            right: parent.right
+            leftMargin: dp(208)
             rightMargin: 16 * Units.dp
+        }
+
+        TabBar{
+            id: sectionTaskBar
+            height: dp(48)
+
+            tabs: sectionTabView
+
+            TabView {
+                id: sectionTabView
+                anchors.fill: parent
+
+                tabsVisible: false
+
+                // Override the style to remove the frame
+                style: Styles.TabViewStyle {
+                    frameOverlap: 0
+                    frame: Item {}
+                }
+            }
         }
 
         height: childrenRect.height

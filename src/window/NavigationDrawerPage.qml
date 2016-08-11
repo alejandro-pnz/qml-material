@@ -36,6 +36,7 @@ Page {
 
         if(navDrawer.fixed){
             mainContent.anchors.leftMargin = 240
+            navDrawer.anchors.topMargin = 96
         }
     }
 
