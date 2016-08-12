@@ -97,7 +97,7 @@ Item {
      */
     property int elevation: 2
 
-    property alias sectionTaskTabView: sectionTabView
+    property var extendedContentSection
 
     /*!
        \internal
@@ -339,32 +339,14 @@ Item {
         id: extendedContentView
         anchors {
             top: actionsRow.bottom
-            left: label.left
-            leftMargin: dp(208)
+            left: parent.left
+            right: parent.right
             rightMargin: 16 * Units.dp
         }
 
-        TabBar{
-            id: sectionTaskBar
-            height: dp(48)
-
-            tabs: sectionTabView
-
-            TabView {
-                id: sectionTabView
-                anchors.fill: parent
-
-                tabsVisible: false
-
-                // Override the style to remove the frame
-                style: Styles.TabViewStyle {
-                    frameOverlap: 0
-                    frame: Item {}
-                }
-            }
-        }
-
         height: childrenRect.height
+
+        children: [extendedContentSection]
     }
 
     TabBar {
