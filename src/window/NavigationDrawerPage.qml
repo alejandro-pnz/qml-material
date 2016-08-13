@@ -31,12 +31,10 @@ Page {
 
     onNavDrawerChanged: {
         navDrawer.anchors.topMargin = dp(48)
-//        topMargin: fixed ? 192 : 0
         navDrawer.parent = navPage
 
         if(navDrawer.fixed){
-            mainContent.anchors.leftMargin = 240
-            navDrawer.anchors.topMargin = 96
+            mainContent.anchors.leftMargin = dp(240)
         }
     }
 

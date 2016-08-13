@@ -11,11 +11,8 @@
 
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 1.3
 import Material 0.3
 import Material.ListItems 0.1 as ListItem
-import QtQuick.Controls.Styles 1.3 as Styles
-import QtQuick.Controls.Styles.Material 0.1 as MaterialStyle
 
 /*!
    \qmltype ActionBar
@@ -96,8 +93,6 @@ Item {
        other view below the action bar that you want to appear as part of the action bar.
      */
     property int elevation: 2
-
-    property var extendedContentSection
 
     /*!
        \internal
@@ -339,14 +334,12 @@ Item {
         id: extendedContentView
         anchors {
             top: actionsRow.bottom
-            left: parent.left
+            left: label.left
             right: parent.right
             rightMargin: 16 * Units.dp
         }
 
         height: childrenRect.height
-
-        children: [extendedContentSection]
     }
 
     TabBar {
