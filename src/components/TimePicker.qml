@@ -141,7 +141,7 @@ FocusScope {
         Rectangle {
             id: headerView
             width: parent.width
-            height: 88 * Units.dp
+            height: 96 * Units.dp
             color: Theme.accentColor
 
             Row {
