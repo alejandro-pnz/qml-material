@@ -52,7 +52,7 @@ PopupBase {
 
     property bool fixed: false
 
-    property int elevation: fixed ? -1 : 3
+    property int elevation: 3
 
     readonly property Action action: action
 
@@ -69,7 +69,7 @@ PopupBase {
         id: action
         iconName: "navigation/menu"
         name: menuTitle
-        onTriggered: navDrawer.toggle()
+        onTriggered: !fixed ? navDrawer.toggle() : ""
     }
 
     View {
