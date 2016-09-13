@@ -30,7 +30,6 @@ Page {
     }
 
     onNavDrawerChanged: {
-        navDrawer.anchors.topMargin = dp(48)
         navDrawer.parent = navPage
 
         if(navDrawer.fixed){

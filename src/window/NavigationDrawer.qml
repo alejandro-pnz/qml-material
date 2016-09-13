@@ -69,7 +69,7 @@ PopupBase {
         id: action
         iconName: "navigation/menu"
         name: menuTitle
-        onTriggered: !fixed ? navDrawer.toggle() : ""
+        onTriggered: if(fixed) navDrawer.toggle()
     }
 
     View {
