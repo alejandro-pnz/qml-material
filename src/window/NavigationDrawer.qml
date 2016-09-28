@@ -22,7 +22,7 @@ PopupBase {
     id: navDrawer
     objectName: "navDrawer"
 
-    overlayLayer: fixed ? "" : "dialogOverlayLayer"
+    overlayLayer: "dialogOverlayLayer"
     overlayColor: Qt.rgba(0, 0, 0, 0.3)
 
     width: Math.min(parent.width - 1 * Device.gridUnit * Units.dp, 5 * Device.gridUnit * Units.dp)
@@ -69,7 +69,7 @@ PopupBase {
         id: action
         iconName: "navigation/menu"
         name: menuTitle
-        onTriggered: if(fixed) navDrawer.toggle()
+        onTriggered: navDrawer.toggle()
     }
 
     View {
