@@ -44,8 +44,10 @@ Item {
     property alias model: listView.model
 
     property string textRole
+    property string valueRole
 
     readonly property string selectedText: (listView.currentItem) ? listView.currentItem.text : ""
+    readonly property var selectedValue: (listView.currentItem) ? listView.currentItem.itemValue : ""
 
     property alias selectedIndex: listView.currentIndex
     property int maxVisibleItems: 4
@@ -136,6 +138,7 @@ Item {
                     id: delegateItem
 
                     text: textRole ? model[textRole] : modelData
+                    property var itemValue: valueRole ? model[valueRole] : modelData
 
                     onClicked: {
                         itemSelected(index)
