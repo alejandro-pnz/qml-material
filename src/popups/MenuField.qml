@@ -137,8 +137,8 @@ Item {
                 delegate: Standard {
                     id: delegateItem
 
-                    text: textRole ? model[textRole] : modelData
-                    property var itemValue: valueRole ? model[valueRole] : modelData
+                    text: textRole ? modelData[textRole] : modelData
+                    property var itemValue: valueRole ? modelData[valueRole] : modelData
 
                     onClicked: {
                         itemSelected(index)
