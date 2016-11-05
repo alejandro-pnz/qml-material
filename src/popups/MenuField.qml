@@ -66,9 +66,11 @@ Item {
     Ink {
         anchors.fill: parent
         onClicked: {
-            listView.positionViewAtIndex(listView.currentIndex, ListView.Center)
-            var offset = listView.currentItem.itemLabel.mapToItem(menu, 0, 0)
-            menu.open(label, 0, -offset.y)
+            if(listView.currentItem) {
+                listView.positionViewAtIndex(listView.currentIndex, ListView.Center)
+                var offset = listView.currentItem.itemLabel.mapToItem(menu, 0, 0)
+                menu.open(label, 0, -offset.y)
+            }
         }
     }
 
@@ -141,8 +143,8 @@ Item {
                     property var itemValue: valueRole ? modelData[valueRole] : modelData
 
                     onClicked: {
-                        itemSelected(index)
                         listView.currentIndex = index
+                        itemSelected(index)
                         menu.close()
                     }
                 }
