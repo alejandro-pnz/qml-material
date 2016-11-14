@@ -96,6 +96,11 @@ Text {
             "size_desktop": 13,
             "size": 14,
             "font": "medium"
+        },
+
+        "notification": {
+            "size": 10,
+            "font": "medium"
         }
     }
 

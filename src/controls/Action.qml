@@ -63,4 +63,9 @@ Controls.Action {
 
     property alias text: action.name
     property alias tooltip: action.summary
+
+    /*!
+       In case when notification count > 0, show big red dot above the icon.
+     */
+    property int notificationCount: 0
 }

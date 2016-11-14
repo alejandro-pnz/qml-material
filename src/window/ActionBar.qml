@@ -299,7 +299,7 @@ Item {
                 color: Theme.lightDark(actionBar.backgroundColor, Theme.light.iconColor,
                                                                   Theme.dark.iconColor)
                 size: iconSize
-
+                notificationCount: action.notificationCount
                 anchors.verticalCenter: parent ? parent.verticalCenter : undefined
             }
         }

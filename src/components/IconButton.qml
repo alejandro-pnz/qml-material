@@ -27,6 +27,7 @@ Item {
     property bool hoverAnimation: action ? action.hoverAnimation : false
     property alias color: icon.color
     property alias size: icon.size
+    property int notificationCount: 0
 
     signal clicked
 
@@ -54,6 +55,30 @@ Item {
 
         onClicked: {
             iconButton.clicked()
+        }
+    }
+
+    View {
+        id: notificationView
+        width: iconButton.size/3*2
+        height: iconButton.size/3*2
+        anchors {
+            left: iconButton.left
+            top: iconButton.top
+            leftMargin: -dp(4)
+            topMargin: -dp(4)
+        }
+        radius: width/2
+        backgroundColor: Palette.colors["red"]["500"]
+        visible: notificationCount > 0
+        z: 2
+
+        Label {
+            id: notificationCountText
+            text: notificationCount <= 99 ? notificationCount : "99"
+            anchors.centerIn: parent
+            color: "white"
+            style: "notification"
         }
     }
 
