@@ -68,6 +68,7 @@ Item {
             leftMargin: -dp(4)
             topMargin: -dp(4)
         }
+        elevation: 1
         radius: width/2
         backgroundColor: Palette.colors["red"]["500"]
         visible: notificationCount > 0
