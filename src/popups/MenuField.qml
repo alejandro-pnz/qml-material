@@ -139,8 +139,9 @@ Item {
                 delegate: Standard {
                     id: delegateItem
 
-                    text: textRole ? modelData[textRole] : modelData
-                    property var itemValue: valueRole ? modelData[valueRole] : modelData
+                    text: textRole ? (model[textRole] !== undefined ? model[textRole] : modelData[textRole]) : modelData
+                    property var itemValue: valueRole ?
+                                (model[valueRole] !== undefined ? model[valueRole] : modelData[valueRole]): modelData
 
                     onClicked: {
                         listView.currentIndex = index
