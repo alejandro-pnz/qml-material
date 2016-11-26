@@ -98,6 +98,12 @@ Text {
             "font": "medium"
         },
 
+        "hint": {
+            "size": 12,
+            "font": "regular",
+            "color": Qt.darker(Theme.light.hintColor)
+        },
+
         "notification": {
             "size": 10,
             "font": "medium"
@@ -123,7 +129,13 @@ Text {
 
     font.capitalization: style == "button" ? Font.AllUppercase : Font.MixedCase
 
-    color: Theme.light.textColor
-
+    color: {
+        var color = fontInfo.color
+        if(color !== undefined) {
+            return color
+        } else {
+            return Theme.light.textColor
+        }
+    }
 
 }
