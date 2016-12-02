@@ -29,6 +29,13 @@ Item {
     property alias size: icon.size
     property int notificationCount: 0
 
+    onNotificationCountChanged: {
+        if(notificationCount > 0) {
+            ink.createTapCircle(iconButton.x + width/2, iconButton.y + height/2)
+            ink.lastCircle.removeCircle();
+        }
+    }
+
     signal clicked
 
     width: icon.width
