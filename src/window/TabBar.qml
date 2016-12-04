@@ -69,6 +69,8 @@ Item {
         selectedIndex = Math.min(selectedIndex, tabCount)
     }
 
+    signal tabSelected(int index)
+
     function removeTab(tab, index) {
         if (tab.hasOwnProperty("close")) {
             tab.close()
@@ -188,7 +190,10 @@ Item {
             Ink {
                 anchors.fill: parent
                 enabled: tab.enabled
-                onClicked: tabBar.selectedIndex = index
+                onClicked: {
+                    tabBar.selectedIndex = index
+                    tabSelected(index)
+                }
 
                 Row {
                     id: row
