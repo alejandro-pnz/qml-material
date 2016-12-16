@@ -51,6 +51,7 @@ MenuField 0.1 MenuField.qml
 Popover 0.2 Popover.qml
 PopupBase 0.1 PopupBase.qml
 TimePickerDialog 0.2 TimePickerDialog.qml
+DatePickerDialog 0.2 DatePickerDialog.qml
 
 # Window
 ActionBar 0.1 ActionBar.qml

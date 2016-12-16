@@ -29,8 +29,10 @@ Controls.Calendar {
      */
     property bool isLandscape: false
     property int dayAreaBottomMargin : 0
-
+    property var lowerRangeDate: undefined
     property var date: undefined
+
+    signal lowerRangeDateExceed
 
     // QML's date type extends Javascript's Date.
     // http://www.w3schools.com/jsref/jsref_obj_date.asp
@@ -482,9 +484,12 @@ Controls.Calendar {
 
                             function selectedDateChanged() {
                                 if (model !== undefined && model.locale !== undefined) {
+                                    if(lowerRangeDate != undefined && control.selectedDate < lowerRangeDate) {
+                                        lowerRangeDateExceed();
+                                        return;
+                                    }
                                     currentIndex = model.indexAt(control.selectedDate);
-                                        console.log("Date:", control.selectedDate)
-                                        date = control.selectedDate
+                                    date = control.selectedDate;
                                 }
                             }
 
