@@ -7,6 +7,7 @@ Dialog {
     floatingActions: true
 
     property alias datePicker: datePicker
+    property alias date: datePicker.date
     signal datePicked(date datePicked)
 
     DatePicker {

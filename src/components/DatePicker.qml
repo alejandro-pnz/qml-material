@@ -23,13 +23,13 @@ import Material 0.3
    \brief Date Picker provides a simple way to select a valid, formatted date
  */
 Controls.Calendar {
-
+    id: calendar
     /*!
        Set to \c true if the picker should lay itself in landscape mode
      */
     property bool isLandscape: false
     property int dayAreaBottomMargin : 0
-
+    property alias selectedDate: calendar.selectedDate
     property var date: undefined
 
     // QML's date type extends Javascript's Date.
@@ -478,13 +478,13 @@ Controls.Calendar {
 
                             model: control.__model
 
-                            Component.onCompleted: selectedDateChanged()
+                            Component.onCompleted: if(date != undefined) selectedDateChanged()
 
                             function selectedDateChanged() {
                                 if (model !== undefined && model.locale !== undefined) {
                                     currentIndex = model.indexAt(control.selectedDate);
-                                        console.log("Date:", control.selectedDate)
-                                        date = control.selectedDate
+                                    console.log("Date:", control.selectedDate)
+                                    date = control.selectedDate
                                 }
                             }
 

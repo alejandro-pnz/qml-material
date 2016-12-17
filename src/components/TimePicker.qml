@@ -46,7 +46,12 @@ FocusScope {
         if(internal.timePicked == undefined){
             return -1;
         } else {
-            return internal.timePicked.getHours()
+            var hours = internal.timePicked.getHours();
+            if(hours > 11 && !prefer24Hour){
+                hours -= 12;
+            }
+
+            return hours
         }
     }
 
