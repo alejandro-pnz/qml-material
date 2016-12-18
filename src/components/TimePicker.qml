@@ -531,9 +531,9 @@ FocusScope {
 
     function getCurrentTime() {
         var date = new Date(internal.timePicked)
-        if(amPmPicker.isAm && date.getHours() > 11)
+        if(!prefer24Hour && amPmPicker.isAm && date.getHours() > 11)
             date.setHours(date.getHours() - 12)
-        else if(!amPmPicker.isAm && date.getHours() < 11)
+        else if(!prefer24Hour && !amPmPicker.isAm && date.getHours() < 11)
             date.setHours(date.getHours() + 12)
 
         return date
