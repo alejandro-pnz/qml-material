@@ -22,7 +22,7 @@ Item {
     property var tabs: []
     property int leftKeyline
 
-    property bool isLargeDevice: Device.type == Device.desktop || Device.type == Device.tablet
+    property bool isLargeDevice: Device.formFactor == Device.desktop || Device.formFactor == Device.tablet
 
     property bool fullWidth: isLargeDevice
             ? false : width - maxTabsWidth <= 16 * Units.dp && tabsWidth <= width

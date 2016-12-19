@@ -20,8 +20,8 @@ ToolBarStyle {
         bottom: 0 * Units.dp
     }
     background: View {
-        implicitHeight: Device.type == Device.phone || Device.type === Device.phablet
-                ? 48 * Units.dp : Device.type == Device.tablet ? 56 * Units.dp : 64 * Units.dp
+        implicitHeight: Device.formFactor == Device.phone || Device.formFactor === Device.phablet
+                ? 48 * Units.dp : Device.formFactor == Device.tablet ? 56 * Units.dp : 64 * Units.dp
         fullWidth: true
         elevation: 2
 

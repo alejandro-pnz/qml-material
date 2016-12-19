@@ -44,8 +44,8 @@ View {
         return height
     }
     property int targetHeight: actionBarHeight
-    property int maxActionCount: Device.type === Device.desktop
-                                 ? 5 : Device.type === Device.tablet ? 4 : 3
+    property int maxActionCount: Device.formFactor === Device.desktop
+                                 ? 5 : Device.formFactor === Device.tablet ? 4 : 3
     property bool clientSideDecorations: false
     property string color: "white"
     property var page
