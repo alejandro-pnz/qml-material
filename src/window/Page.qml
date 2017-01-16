@@ -78,7 +78,7 @@ FocusScope {
        for example, an icon to open a navigation drawer when on your root page.
      */
     property Action backAction: Action {
-        name: "Back"
+        name: backActionTitle
         iconName: "navigation/arrow_back"
         onTriggered: page.pop()
         visible: canGoBack
@@ -146,6 +146,11 @@ FocusScope {
        The title of the page shown in the action bar.
      */
     property string title
+
+    /*!
+       The title of the back button in the action bar.
+     */
+    property string backActionTitle: "Back"
 
     /*!
        This signal is emitted when the back action is triggered or back key is released.
