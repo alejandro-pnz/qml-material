@@ -21,7 +21,12 @@ import Material.Extras 0.1
 Subtitled {
     id: listItem
 
-    property var model
+    property alias model: listView.model
+    property string textRole
+    property string valueRole
+
+    readonly property string selectedText: (listView.currentItem) ? listView.currentItem.text : ""
+    readonly property var selectedValue: (listView.currentItem) ? listView.currentItem.itemValue : ""
     property alias selectedIndex: listView.currentIndex
 
     subText: listView.currentItem.text
@@ -77,12 +82,13 @@ Subtitled {
 
             interactive: false
             height: count > 0 ? contentHeight : 0
-            model: listItem.model
 
             delegate: Standard {
                 id: delegateItem
 
-                text: modelData
+                text: textRole ? (model[textRole] !== undefined ? model[textRole] : modelData[textRole]) : modelData
+                property var itemValue: valueRole ?
+                            (model[valueRole] !== undefined ? model[valueRole] : modelData[valueRole]): modelData
 
                 onClicked: {
                     listView.currentIndex = index
