@@ -58,6 +58,7 @@ Item {
     property bool floatingLabel: false
     property bool hasError: false
     property bool hasHelperText: helperText.length > 0
+    property string noItemsText: ""
 
     readonly property rect inputRect: Qt.rect(spinBox.x, spinBox.y, spinBox.width, spinBox.height)
 
@@ -100,7 +101,7 @@ Item {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
 
-                text: (listView.currentItem) ? listView.currentItem.text : ""
+                text: (listView.currentItem) ? listView.currentItem.text : noItemsText
                 style: "subheading"
                 elide: Text.ElideRight
             }
