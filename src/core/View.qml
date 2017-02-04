@@ -43,84 +43,8 @@ Item {
 
     property bool elevationInverted: false
 
-    property var topShadow: [
-        {
-            "opacity": 0,
-            "offset": 0,
-            "blur": 0
-        },
-
-        {
-            "opacity": 0.12,
-            "offset": 1 * Units.dp,
-            "blur": 1.5 * Units.dp
-        },
-
-        {
-            "opacity": 0.16,
-            "offset": 3 * Units.dp,
-            "blur": 3 * Units.dp
-        },
-
-        {
-            "opacity": 0.19,
-            "offset": 10 * Units.dp,
-            "blur": 10 * Units.dp
-        },
-
-        {
-            "opacity": 0.25,
-            "offset": 14 * Units.dp,
-            "blur": 14 * Units.dp
-        },
-
-        {
-            "opacity": 0.30,
-            "offset": 19 * Units.dp,
-            "blur": 19 * Units.dp
-        }
-    ]
-
-    property var bottomShadow: [
-        {
-            "opacity": 0,
-            "offset": 0 * Units.dp,
-            "blur": 0 * Units.dp
-        },
-
-        {
-            "opacity": 0.24,
-            "offset": 1 * Units.dp,
-            "blur": 1 * Units.dp
-        },
-
-        {
-            "opacity": 0.23,
-            "offset": 3 * Units.dp,
-            "blur": 3 * Units.dp
-        },
-
-        {
-            "opacity": 0.23,
-            "offset": 6 * Units.dp,
-            "blur": 3 * Units.dp
-        },
-
-        {
-            "opacity": 0.22,
-            "offset": 10 * Units.dp,
-            "blur": 5 * Units.dp
-        },
-
-        {
-            "opacity": 0.22,
-            "offset": 15 * Units.dp,
-            "blur": 6 * Units.dp
-        }
-    ]
-
     RectangularGlow {
-        property var elevationInfo: bottomShadow[Math.min(elevation, 5)]
+        property var elevationInfo: ViewShadow.bottomShadow[Math.min(elevation, 5)]
         property real horizontalShadowOffset: elevationInfo.offset * Math.sin((2 * Math.PI) * (parent.rotation / 360.0))
         property real verticalShadowOffset: elevationInfo.offset * Math.cos((2 * Math.PI) * (parent.rotation / 360.0))
 
@@ -138,7 +62,7 @@ Item {
     }
 
     RectangularGlow {
-        property var elevationInfo: topShadow[Math.min(elevation, 5)]
+        property var elevationInfo: ViewShadow.topShadow[Math.min(elevation, 5)]
         property real horizontalShadowOffset: elevationInfo.offset * Math.sin((2 * Math.PI) * (parent.rotation / 360.0))
         property real verticalShadowOffset: elevationInfo.offset * Math.cos((2 * Math.PI) * (parent.rotation / 360.0))
 

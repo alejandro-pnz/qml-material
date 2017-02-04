@@ -12,6 +12,7 @@
 	<file>Switch.qml</file>
 	<file>Tab.qml</file>
 	<file>TextField.qml</file>
+	<file>LabelExtra.qml</file>
 </qresource>
 
 </RCC>

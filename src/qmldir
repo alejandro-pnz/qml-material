@@ -27,6 +27,7 @@ Slider 0.1 Slider.qml
 Switch 0.1 Switch.qml
 Tab 0.1 Tab.qml
 TextField 0.1 TextField.qml
+singleton LabelExtra 0.1 LabelExtra.qml
 
 # Core
 AwesomeIcon 0.1 AwesomeIcon.qml
@@ -40,6 +41,7 @@ Utils 0.3 utils.js
 singleton MaterialAnimation 0.1 MaterialAnimation.qml
 singleton Palette 0.1 Palette.qml
 singleton Theme 0.1 Theme.qml
+singleton ViewShadow 0.1 ViewShadow.qml
 
 # Popups
 BottomActionSheet 0.1 BottomActionSheet.qml

@@ -20,122 +20,12 @@ import Material 0.3
 Text {
     id: label
     property string style: "body1"
+    property var fontInfo: LabelExtra.styles[style]
 
-    property var fontStyles: {
-        "display4": {
-            "size": 112,
-            "font": "light"
-        },
-
-        "display3": {
-            "size": 56,
-            "font": "regular"
-        },
-
-        "display2": {
-            "size": 45,
-            "font": "regular"
-        },
-
-        "display1": {
-            "size": 34,
-            "font": "regular"
-        },
-
-        "headline": {
-            "size": 24,
-            "font": "regular"
-        },
-
-        "title": {
-            "size": 20,
-            "font": "medium"
-        },
-
-        "dialog": {
-            "size": 18,
-            "size_desktop": 17,
-            "font": "regular"
-        },
-
-        "subheading": {
-            "size": 16,
-            "size_desktop": 15,
-            "font": "regular"
-        },
-
-        "body2": {
-            "size": 14,
-            "size_desktop": 13,
-            "font": "medium"
-        },
-
-        "body1": {
-            "size": 14,
-            "size_desktop": 13,
-            "font": "regular"
-        },
-
-        "caption": {
-            "size": 12,
-            "font": "regular"
-        },
-
-        "menu": {
-            "size": 14,
-            "size_desktop": 13,
-            "font": "medium"
-        },
-
-        "button": {
-            "size": 14,
-            "font": "medium"
-        },
-
-        "tooltip": {
-            "size_desktop": 13,
-            "size": 14,
-            "font": "medium"
-        },
-
-        "hint": {
-            "size": 12,
-            "font": "regular",
-            "color": Qt.darker(Theme.light.hintColor)
-        },
-
-        "notification": {
-            "size": 10,
-            "font": "medium"
-        }
-    }
-
-    property var fontInfo: fontStyles[style]
-
-    font.pixelSize: (!Device.isMobile && fontInfo.size_desktop
-            ? fontInfo.size_desktop : fontInfo.size) * Units.dp
+    font.pixelSize: fontInfo.size * Units.dp
     font.family: "Roboto"
-    font.weight: {
-        var weight = fontInfo.font
+    font.weight: fontInfo.font
+    font.capitalization: style === "button" ? Font.AllUppercase : Font.MixedCase
 
-        if (weight === "medium") {
-            return Font.DemiBold
-        } else if (weight === "regular") {
-            return Font.Normal
-        } else if (weight === "light") {
-            return Font.Light
-        }
-    }
-
-    font.capitalization: style == "button" ? Font.AllUppercase : Font.MixedCase
-
-    color: {
-        var color = fontInfo.color
-        if(color !== undefined) {
-            return color
-        } else {
-            return Theme.light.textColor
-        }
-    }
-
+    color: Theme.light.textColor
 }
