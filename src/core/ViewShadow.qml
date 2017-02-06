@@ -46,8 +46,8 @@ Object {
     readonly property var bottomShadow: [
         {
             opacity: 0,
-            offset: 0 * Units.dp,
-            blur: 0 * Units.dp
+            offset: 0,
+            blur: 0
         },
 
         {

@@ -25,7 +25,7 @@ Text {
     font.pixelSize: fontInfo.size * Units.dp
     font.family: "Roboto"
     font.weight: fontInfo.font
-    font.capitalization: style === "button" ? Font.AllUppercase : Font.MixedCase
+    font.capitalization: style == "button" ? Font.AllUppercase : Font.MixedCase
 
     color: Theme.light.textColor
 }
