@@ -77,7 +77,8 @@ Popover {
 
     Label {
         id: tooltipLabel
-        style: "tooltip"
+        font.pixelSize: 13
+        font.weight: Font.DemiBold
         color: Theme.dark.textColor
         anchors.centerIn: parent
     }

@@ -86,7 +86,8 @@ Item {
             text: notificationCount <= 99 ? notificationCount : "99"
             anchors.centerIn: parent
             color: "white"
-            style: "notification"
+            font.pixelSize: 10
+            font.weight: Font.DemiBold
         }
     }
 

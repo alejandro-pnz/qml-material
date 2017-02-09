@@ -92,14 +92,13 @@ BaseListItem {
 
                 spacing: 8 * Units.dp
 
-                Label {
+                SubheadingLabel {
                     id: label
 
                     Layout.alignment: Qt.AlignVCenter
                     Layout.fillWidth: true
 
                     elide: Text.ElideRight
-                    style: "subheading"
                     color: darkBackground ? Theme.dark.textColor : Theme.light.textColor
                 }
 
@@ -112,8 +111,7 @@ BaseListItem {
                     color: darkBackground ? Theme.dark.subTextColor : Theme.light.subTextColor
                     elide: Text.ElideRight
                     horizontalAlignment: Qt.AlignHCenter
-                    style: "body1"
-                    visible: text != ""
+                    visible: text.length > 0
                 }
             }
 
@@ -135,9 +133,8 @@ BaseListItem {
                 color: darkBackground ? Theme.dark.subTextColor : Theme.light.subTextColor
                 elide: Text.ElideRight
                 wrapMode: Text.WordWrap
-                style: "body1"
 
-                visible: text != "" && !contentItem.showing
+                visible: text.length > 0 && !contentItem.showing
                 maximumLineCount: listItem.maximumLineCount - 1
             }
         }

@@ -154,9 +154,8 @@ FocusScope {
                 anchors.centerIn: parent
                 height: 48 * Units.dp
 
-                Label {
+                DisplayLabel {
                     id:hoursLabel
-                    style: "display3"
                     color: isHours ? "white" : "#99ffffff"
                     text: internal.timePicked.getHours()
                     anchors.verticalCenter: parent.verticalCenter
@@ -171,16 +170,14 @@ FocusScope {
                     }
                 }
 
-                Label {
-                    style: "display3"
+                DisplayLabel {
                     color: "white"
                     text:":"
                     anchors.verticalCenter: parent.verticalCenter
                 }
 
-                Label {
+                DisplayLabel {
                     id: minutesLabel
-                    style: "display3"
                     color: !isHours ? "white" : "#99ffffff"
                     text: internal.timePicked.getMinutes() < 10 ? "0" +  internal.timePicked.getMinutes() : internal.timePicked.getMinutes()
                     anchors.verticalCenter: parent.verticalCenter
@@ -210,8 +207,7 @@ FocusScope {
 
                 spacing: 4 * Units.dp
 
-                Label {
-                    style: "subheading"
+                SubheadingLabel {
                     font.weight: Font.DemiBold
                     color: amPmPicker.isAm ? "white" : "#99ffffff"
                     text: "AM"
@@ -222,8 +218,7 @@ FocusScope {
                     }
                 }
 
-                Label {
-                    style: "subheading"
+                SubheadingLabel {
                     font.weight: Font.DemiBold
                     color: !amPmPicker.isAm ? "white" : "#99ffffff"
                     text: "PM"
@@ -337,14 +332,13 @@ FocusScope {
 
                         property bool isSelected: false
 
-                        Label {
+                        SubheadingLabel {
                             anchors.centerIn: parent
                             text:{
                                 var model = isHours ? hoursPathView.model : minutesPathView.model
                                 return model.data < 10 && !isHours ? "0" + modelData : modelData
                             }
                             visible: modelData >= 0 && (isHours ? true : modelData % 5 == 0)
-                            style: "subheading"
                         }
 
                         Connections {

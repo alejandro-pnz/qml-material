@@ -85,10 +85,9 @@ Controls.Calendar {
 				anchors.rightMargin: 36 * Units.dp
 				spacing: 0
 
-				Label {
+                BoldLabel {
 					font.weight: Font.DemiBold
-					style: "body2"
-					color: Qt.rgba(1, 1, 1, 0.7)
+                    color: Qt.rgba(1, 1, 1, 0.7)
 					text: control.selectedDate.toLocaleString(control.__locale, "yyyy")
 				}
 
@@ -220,13 +219,12 @@ Controls.Calendar {
                         onClicked: control.showNextMonth()
                     }
 
-                    Label {
+                    SubheadingLabel {
                         id: monthHeader
                         anchors.verticalCenter: previousMonth.verticalCenter
                         anchors.verticalCenterOffset: -1 * Units.dp
                         anchors.horizontalCenter: parent.horizontalCenter
                         font.weight: Font.Black
-                        style: "subheading"
                         text: control.__locale.standaloneMonthName(control.visibleMonth) + " " + control.visibleYear
                     }
 

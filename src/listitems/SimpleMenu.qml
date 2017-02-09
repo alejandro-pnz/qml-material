@@ -35,9 +35,8 @@ Subtitled {
 
     property int __maxWidth: 0
 
-    Label {
+    SubheadingLabel {
         id: hiddenLabel
-        style: "subheading"
         visible: false
         color: darkBackground ? Theme.dark.textColor : Theme.light.textColor
 

@@ -58,14 +58,13 @@ BaseListItem {
             }
         }
 
-        Label {
+        SubheadingLabel {
             id: label
 
             Layout.alignment: Qt.AlignVCenter
             Layout.fillWidth: true
 
             elide: Text.ElideRight
-            style: "subheading"
 
             color: listItem.expanded ? Theme.primaryColor
                     : darkBackground ? Theme.dark.textColor : Theme.light.textColor

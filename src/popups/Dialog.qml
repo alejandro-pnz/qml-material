@@ -218,13 +218,11 @@ PopupBase {
                 visible: titleLabel.visible || textLabel.visible
             }
 
-            Label {
+            TitleLabel {
                 id: titleLabel
-
                 width: parent.width
                 wrapMode: Text.Wrap
-                style: "title"
-                visible: title != ""
+                visible: title.length > 0
             }
 
             Item {
@@ -233,14 +231,12 @@ PopupBase {
                 visible: titleLabel.visible
             }
 
-            Label {
+            DialogLabel {
                 id: textLabel
-
                 width: parent.width
                 wrapMode: Text.Wrap
-                style: "dialog"
                 color: Theme.light.subTextColor
-                visible: text != ""
+                visible: text.length > 0
             }
 
             Item {

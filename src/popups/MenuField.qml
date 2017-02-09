@@ -95,14 +95,13 @@ Item {
             height: parent.height
             width: parent.width + 5 * Units.dp
 
-            Label {
+            SubheadingLabel {
                 id: label
 
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
 
                 text: (listView.currentItem) ? listView.currentItem.text : noItemsText
-                style: "subheading"
                 elide: Text.ElideRight
             }
 

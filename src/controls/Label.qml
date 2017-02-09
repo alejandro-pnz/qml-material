@@ -19,13 +19,10 @@ import Material 0.3
  */
 Text {
     id: label
-    property string style: "body1"
-    property var fontInfo: LabelExtra.styles[style]
-
-    font.pixelSize: fontInfo.size * Units.dp
+    font.pixelSize: 13
     font.family: "Roboto"
-    font.weight: fontInfo.font
-    font.capitalization: style == "button" ? Font.AllUppercase : Font.MixedCase
+    font.weight: Font.Normal
+    font.capitalization: Font.MixedCase
 
     color: Theme.light.textColor
 }

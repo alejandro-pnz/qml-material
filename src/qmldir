@@ -27,7 +27,12 @@ Slider 0.1 Slider.qml
 Switch 0.1 Switch.qml
 Tab 0.1 Tab.qml
 TextField 0.1 TextField.qml
-singleton LabelExtra 0.1 LabelExtra.qml
+DisplayLabel 0.1 DisplayLabel.qml
+DialogLabel 0.1 DialogLabel.qml
+TitleLabel 0.1 TitleLabel.qml
+ButtonLabel 0.1 ButtonLabel.qml
+BoldLabel 0.1 BoldLabel.qml
+SubheadingLabel 0.1 SubheadingLabel.qml
 
 # Core
 AwesomeIcon 0.1 AwesomeIcon.qml

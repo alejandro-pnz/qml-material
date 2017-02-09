@@ -29,7 +29,7 @@ CheckBoxStyle {
 
         baselineOffset: text.baselineOffset
 
-        Label {
+        ButtonLabel {
             id: text
 
             anchors.centerIn: parent
@@ -37,7 +37,6 @@ CheckBoxStyle {
             property bool darkBackground: control.hasOwnProperty("darkBackground")
             ? control.darkBackground : false
 
-            style: "button"
             color: control.enabled ? darkBackground ? Theme.dark.textColor
                                                     : Theme.light.textColor
                                    : darkBackground ? Theme.alpha("#fff", 0.30)

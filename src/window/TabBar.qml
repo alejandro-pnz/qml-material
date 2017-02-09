@@ -218,7 +218,7 @@ Item {
                         }
                     }
 
-                    Label {
+                    BoldLabel {
                         id: label
 
                         text: typeof(tabItem.tab) == "string"
@@ -227,7 +227,6 @@ Item {
                                 ? darkBackground ? Theme.dark.textColor : Theme.light.accentColor
                                 : darkBackground ? Theme.dark.shade(tab.enabled ? 0.6 : 0.2) : Theme.light.shade(tab.enabled ? 0.6 : 0.2)
 
-                        style: "body2"
                         font.capitalization: Font.AllUppercase
                         anchors.verticalCenter: parent.verticalCenter
                         maximumLineCount: 2

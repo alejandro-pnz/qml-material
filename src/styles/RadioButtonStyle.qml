@@ -23,9 +23,8 @@ RadioButtonStyle {
     property bool darkBackground: control.hasOwnProperty("darkBackground")
             ? control.darkBackground : false
 
-    label: Label {
+    label: ButtonLabel {
         text: control.text
-        style: "button"
         color: control.enabled ? style.darkBackground ? Theme.dark.textColor
                                                         : Theme.light.textColor
                                : style.darkBackground ? Theme.alpha("#fff", 0.30)

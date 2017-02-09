@@ -86,11 +86,10 @@ ButtonStyle {
                 : context == "snackbar" ? label.width + 16 * Units.dp
                                         : Math.max(88 * Units.dp, label.width + 32 * Units.dp)
 
-        Label {
+        ButtonLabel {
             id: label
             anchors.centerIn: parent
             text: control.text
-            style: "button"
             color: control.enabled ? control.hasOwnProperty("textColor")
                                      ? control.textColor : darkBackground ? Theme.dark.textColor
                                                                           : Theme.light.textColor

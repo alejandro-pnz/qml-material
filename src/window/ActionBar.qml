@@ -246,7 +246,7 @@ Item {
         property bool show: backAction && backAction.visible
     }
 
-    Label {
+    TitleLabel {
         id: label
 
         anchors {
@@ -266,7 +266,6 @@ Item {
 
         textFormat: Text.PlainText
         text: actionBar.title
-        style: "title"
         color: Theme.lightDark(actionBar.backgroundColor, Theme.light.textColor,
                                                             Theme.dark.textColor)
         elide: Text.ElideRight

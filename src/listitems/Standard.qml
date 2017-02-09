@@ -111,14 +111,13 @@ BaseListItem {
                 visible: children.length > 0
             }
 
-            Label {
+            SubheadingLabel {
                 id: label
 
                 Layout.alignment: Qt.AlignVCenter
                 Layout.fillWidth: true
 
                 elide: Text.ElideRight
-                style: "subheading"
 
                 color: listItem.selected ? Theme.primaryColor
                         : darkBackground ? Theme.dark.textColor : Theme.light.textColor
@@ -134,9 +133,8 @@ BaseListItem {
 
             color: darkBackground ? Theme.dark.subTextColor : Theme.light.subTextColor
             elide: Text.ElideRight
-            style: "body1"
 
-            visible: text != ""
+            visible: text.length > 0
         }
 
         Item {

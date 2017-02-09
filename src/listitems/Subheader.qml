@@ -33,7 +33,6 @@ View {
     property int spacing
 
     property alias text: label.text
-    property alias style: label.style
     property alias textColor: label.color
     property bool darkBackground
 
