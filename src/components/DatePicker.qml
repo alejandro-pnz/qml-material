@@ -481,7 +481,6 @@ Controls.Calendar {
                             function selectedDateChanged() {
                                 if (model !== undefined && model.locale !== undefined) {
                                     currentIndex = model.indexAt(control.selectedDate);
-                                    console.log("Date:", control.selectedDate)
                                     date = control.selectedDate
                                 }
                             }
