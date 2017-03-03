@@ -22,9 +22,17 @@ Item {
     property alias asynchronous: image.asynchronous
     property alias cache: image.cache
     property alias fillMode: image.fillMode
+    property alias placeholderColor: placeholder.color
 
     width: image.implicitWidth
     height: image.implicitHeight
+
+    Rectangle {
+        id: placeholder
+        anchors.fill: parent
+        radius: width/2
+        visible: image.status !== Image.Ready
+    }
 
     Extras.Image {
         id: image
