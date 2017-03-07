@@ -55,6 +55,10 @@ View {
         }
     }
 
+    function stop() {
+        snackbar.opened = false;
+    }
+
     function checkForQueue() {
         if(messageQueue.length > 0) {
             var snack = messageQueue.shift();
@@ -93,7 +97,7 @@ View {
 
         onTriggered: {
             if (!running) {
-                snackbar.opened = false;
+                snackbar.stop();
             }
         }
     }
