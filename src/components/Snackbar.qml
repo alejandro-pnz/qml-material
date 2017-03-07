@@ -26,15 +26,40 @@ View {
     property color buttonColor: Theme.accentColor
     property string text
     property bool opened
-    property int duration: 2000
+    property int duration: _LENGTH_LONG
+    readonly property int _LENGTH_SHORT: 2000
+    readonly property int _LENGTH_LONG: 3500
+    readonly property int _LENGTH_INDEFINITE: 0
     property bool fullWidth: Device.formFactor === Device.phone || Device.formFactor === Device.phablet
+
+    property var messageQueue: new Array
 
     signal clicked
 
-    function open(text) {
-        snackbar.text = text
-        opened = true;
-        timer.restart();
+    function open(text, duration) {
+        if(opened) {
+            messageQueue.push({text: text, duration: duration});
+        } else {
+            snackbar.text = text
+            opened = true;
+            if(duration !== undefined) {
+                if(duration === _LENGTH_INDEFINITE) {
+                    timer.stop();
+                    return;
+                }
+                snackbar.duration = duration;
+            } else {
+                snackbar.duration = _LENGTH_LONG;
+            }
+            timer.restart();
+        }
+    }
+
+    function checkForQueue() {
+        if(messageQueue.length > 0) {
+            var snack = messageQueue.shift();
+            open(snack.text, snack.duration);
+        }
     }
 
     anchors {
@@ -45,7 +70,14 @@ View {
         horizontalCenter: fullWidth ? undefined : parent.horizontalCenter
 
         Behavior on bottomMargin {
-            NumberAnimation { duration: 300 }
+            NumberAnimation {
+                duration: 300
+                onRunningChanged: {
+                    if(!running && !timer.running) {
+                        checkForQueue();
+                    }
+                }
+            }
         }
     }
     radius: fullWidth ? 0 : 2 * Units.dp
