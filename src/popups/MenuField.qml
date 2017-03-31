@@ -54,6 +54,7 @@ Item {
 
     property alias placeholderText: fieldPlaceholder.text
     property alias helperText: helperTextLabel.text
+    property alias tooltipText: tooltip.text
 
     property bool floatingLabel: false
     property bool hasError: false
@@ -65,7 +66,11 @@ Item {
     signal itemSelected(int index)
 
     Ink {
+        id: ink
         anchors.fill: parent
+        hoverEnabled: true
+        preventStealing: true
+        propagateComposedEvents: true
         onClicked: {
             if(listView.currentItem) {
                 listView.positionViewAtIndex(listView.currentIndex, ListView.Center)
@@ -73,6 +78,11 @@ Item {
                 menu.open(label, 0, -offset.y)
             }
         }
+    }
+
+    Tooltip {
+        id: tooltip
+        mouseArea: ink
     }
 
     Item {
