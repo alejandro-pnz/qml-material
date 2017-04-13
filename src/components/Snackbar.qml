@@ -36,18 +36,18 @@ View {
 
     signal clicked
 
-    function open(text, duration) {
+    function open(text, dur) {
         if(opened) {
-            messageQueue.push({text: text, duration: duration});
+            messageQueue.push({text: text, duration: dur});
         } else {
             snackbar.text = text
             opened = true;
-            if(duration !== undefined) {
-                if(duration === _LENGTH_INDEFINITE) {
+            if(dur !== undefined) {
+                snackbar.duration = dur;
+                if(dur === _LENGTH_INDEFINITE) {
                     timer.stop();
                     return;
                 }
-                snackbar.duration = duration;
             } else {
                 snackbar.duration = _LENGTH_LONG;
             }
@@ -56,7 +56,8 @@ View {
     }
 
     function stop() {
-        snackbar.opened = false;
+        if(duration === _LENGTH_INDEFINITE)
+            snackbar.opened = false;
     }
 
     function checkForQueue() {
@@ -97,7 +98,7 @@ View {
 
         onTriggered: {
             if (!running) {
-                snackbar.stop();
+                snackbar.opened = false;
             }
         }
     }
