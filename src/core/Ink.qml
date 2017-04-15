@@ -109,7 +109,7 @@ MouseArea {
                 : parent.width/5
         height: width
 
-        radius: width/2
+        radius: height/2
 
         opacity: showFocus && focused ? 1 : 0
 

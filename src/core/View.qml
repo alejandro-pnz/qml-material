@@ -42,41 +42,79 @@ Item {
     default property alias data: rect.data
 
     property bool elevationInverted: false
+    property var topElevationInfo: undefined
+    property var bottomElevationInfo: undefined
 
-    RectangularGlow {
-        property var elevationInfo: ViewShadow.bottomShadow[Math.min(elevation, 5)]
-        property real horizontalShadowOffset: elevationInfo.offset * Math.sin((2 * Math.PI) * (parent.rotation / 360.0))
-        property real verticalShadowOffset: elevationInfo.offset * Math.cos((2 * Math.PI) * (parent.rotation / 360.0))
-
-        anchors.centerIn: parent
-        width: parent.width + (fullWidth ? 10 * Units.dp : 0)
-        height: parent.height + (fullHeight ? 20 * Units.dp : 0)
-        anchors.horizontalCenterOffset: horizontalShadowOffset * (elevationInverted ? -1 : 1)
-        anchors.verticalCenterOffset: verticalShadowOffset * (elevationInverted ? -1 : 1)
-        glowRadius: elevationInfo.blur
-        opacity: elevationInfo.opacity
-        spread: 0.05
-        color: "black"
-        cornerRadius: item.radius + glowRadius * 2.5
-        //visible: parent.opacity == 1
+    Component.onCompleted: {
+        updateElevation();
+        updateSize();
     }
 
-    RectangularGlow {
-        property var elevationInfo: ViewShadow.topShadow[Math.min(elevation, 5)]
-        property real horizontalShadowOffset: elevationInfo.offset * Math.sin((2 * Math.PI) * (parent.rotation / 360.0))
-        property real verticalShadowOffset: elevationInfo.offset * Math.cos((2 * Math.PI) * (parent.rotation / 360.0))
+    onWidthChanged: {
+        updateWidth();
+    }
 
+    onHeightChanged: {
+        updateHeight();
+    }
+
+    onElevationChanged: {
+        updateElevation();
+    }
+
+    onFullWidthChanged: {
+        updateWidth();
+    }
+
+    onFullHeightChanged: {
+        updateHeight();
+    }
+
+    function updateSize() {
+        updateWidth();
+        updateHeight();
+    }
+
+    function updateWidth() {
+        if(fullWidth) {
+            var width = item.width + 10 * Units.dp;
+            topGlow.width = width;
+            bottomGlow.width = width;
+        } else {
+            topGlow.width = item.width;
+            bottomGlow.width = item.width;
+        }
+    }
+
+    function updateHeight() {
+        if(fullHeight) {
+            var height = item.height + 20 * Units.dp;
+            topGlow.height = height;
+            bottomGlow.height = height;
+        } else {
+            topGlow.height = item.height;
+            bottomGlow.height = item.height;
+        }
+    }
+
+    function updateElevation() {
+        topElevationInfo = elevation > 0 ? ViewShadow.topShadow[Math.min(elevation, 5)] : undefined;
+        topGlow.updateShadow(topElevationInfo, radius)
+
+        bottomElevationInfo = elevation > 0 ? ViewShadow.bottomShadow[Math.min(elevation, 5)] : undefined;
+        bottomGlow.updateShadow(bottomElevationInfo, radius)
+    }
+
+    ViewGlow {
+        id: topGlow
         anchors.centerIn: parent
-        width: parent.width + (fullWidth ? 10 * Units.dp : 0)
-        height: parent.height + (fullHeight ? 20 * Units.dp : 0)
-        anchors.horizontalCenterOffset: horizontalShadowOffset * (elevationInverted ? -1 : 1)
-        anchors.verticalCenterOffset: verticalShadowOffset * (elevationInverted ? -1 : 1)
-        glowRadius: elevationInfo.blur
-        opacity: elevationInfo.opacity
-        spread: 0.05
-        color: "black"
-        cornerRadius: item.radius + glowRadius * 2.5
-        //visible: parent.opacity == 1
+        elevationInverted: parent.elevationInverted
+    }
+
+    ViewGlow {
+        id: bottomGlow
+        anchors.centerIn: parent
+        elevationInverted: parent.elevationInverted
     }
 
     Rectangle {

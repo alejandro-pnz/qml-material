@@ -18,7 +18,7 @@ import QtGraphicalEffects 1.0
    \qmltype Icon
    \inqmlmodule Material
 
-   \brief Displays an icon from the Material Design and FontAwesome icon collections.
+   \brief Displays an icon from the Material Design
 */
 Item {
     id: icon
@@ -36,15 +36,14 @@ Item {
     /*!
        A URL pointing to an image to display as the icon. By default, this is
        a special URL representing the icon named by \l name from the Material Design
-       icon collection or FontAwesome. The icon will be colorized using the specified \l color,
+       icon collection. The icon will be colorized using the specified \l color,
        unless you put ".color." in the filename, for example, "app-icon.color.svg".
 
        \sa name
       */
     property string source: name ? "icon://" + name : ""
 
-    property bool valid: source.indexOf("icon://awesome/") == 0
-            ? awesomeIcon.valid : image.status == Image.Ready
+    property bool valid: image.status == Image.Ready
 
     width: size
     height: size
@@ -58,9 +57,7 @@ Item {
         visible: source != "" && !colorize
 
         source: {
-            if (icon.source.indexOf("icon://awesome/") == 0) {
-                return ''
-            } else if (icon.source.indexOf('icon://') === 0) {
+            if (icon.source.indexOf('icon://') === 0) {
                 var name = icon.source.substring(7)
 
                 if (name) {
@@ -91,22 +88,5 @@ Item {
         cached: true
         visible: image.source != "" && colorize
         opacity: icon.color.a
-    }
-
-    AwesomeIcon {
-        id: awesomeIcon
-
-        anchors.centerIn: parent
-        size: icon.size * 0.9
-        visible: name != ""
-        color: icon.color
-
-        name: {
-            if (icon.source.indexOf("icon://awesome/") == 0) {
-                return icon.source.substring(15)
-            } else {
-                return ''
-            }
-        }
     }
 }

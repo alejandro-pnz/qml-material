@@ -15,5 +15,6 @@
         <file>ViewShadow.qml</file>
         <file>awesome.js</file>
         <file>utils.js</file>
+        <file>ViewGlow.qml</file>
     </qresource>
 </RCC>
