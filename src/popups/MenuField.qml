@@ -32,7 +32,7 @@ import Material.ListItems 0.1
 Item {
     id: field
 
-    implicitHeight: hasHelperText ? helperTextLabel.y + helperTextLabel.height + 4 * Units.dp
+    implicitHeight: hasHelperText ? helperTextLabel.y + helperTextLabel.height
                                   : underline.y + 8 * Units.dp
     implicitWidth: spinBoxContents.implicitWidth
 
@@ -87,6 +87,9 @@ Item {
 
     Item {
         id: spinBox
+
+        anchors.top: fieldPlaceholder.bottom
+        anchors.topMargin: placeholderText !== "" ? 8 * Units.dp : 0
 
         height: 24 * Units.dp
         width: parent.width
@@ -175,8 +178,7 @@ Item {
 
         font.pixelSize: 12 * Units.dp
 
-        anchors.bottom: spinBox.top
-        anchors.bottomMargin: 8 * Units.dp
+        anchors.top: parent.top
 
         color: Theme.light.hintColor
     }
@@ -211,7 +213,6 @@ Item {
             left: parent.left
             right: parent.right
             top: underline.top
-            topMargin: 4 * Units.dp
         }
 
         visible: hasHelperText
