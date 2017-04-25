@@ -117,6 +117,11 @@ Controls.ApplicationWindow {
     }
 
     OverlayLayer {
+        id: extraOverlayLayer
+        objectName: "extraOverlayLayer"
+    }
+
+    OverlayLayer {
         id: overlayLayer
     }
 
