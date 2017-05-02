@@ -63,6 +63,7 @@ Controls.Button {
        \endlist
      */
     property bool isMiniSize: false
+    property string tooltipText
 
     style: ControlStyles.ButtonStyle {
         padding {
@@ -111,6 +112,29 @@ Controls.Button {
                     }
 
                     circular: true
+                }
+
+                Tooltip {
+                    id: tooltip
+                    text: tooltipText
+                    anchors.fill: button
+                    mouseArea: mouseArea
+
+                    Connections {
+                        target: button
+
+                        onHoveredChanged: {
+                            if(hovered) {
+                                if(tooltip.text !== "" && !tooltip.showing)
+                                    tooltip.timer.start()
+                            } else {
+                                tooltip.timer.stop()
+
+                                if(tooltip.showing)
+                                    tooltip.close()
+                            }
+                        }
+                    }
                 }
             }
         }

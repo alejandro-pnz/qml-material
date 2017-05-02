@@ -31,7 +31,7 @@ Popover {
     id: dropdown
 
     property alias text: tooltipLabel.text
-
+    property alias timer: timer
     property MouseArea mouseArea
 
     overlayLayer: "tooltipOverlayLayer"
