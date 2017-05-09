@@ -76,6 +76,8 @@ Item {
                 listView.positionViewAtIndex(listView.currentIndex, ListView.Center)
                 var offset = listView.currentItem.itemLabel.mapToItem(menu, 0, 0)
                 menu.open(label, 0, -offset.y)
+            } else if (model !== undefined) {
+                menu.open(label, 0, 0)
             }
         }
     }
@@ -113,8 +115,12 @@ Item {
 
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
+                text: (listView.model) ?
+                          listView.model instanceof Array ?
+                              textRole ? listView.model[selectedIndex][textRole] : listView.model[selectedIndex]
+                            : textRole ? listView.model.get(selectedIndex)[textRole] : listView.model.get(selectedIndex)
+                        : noItemsText
 
-                text: (listView.currentItem) ? listView.currentItem.text : noItemsText
                 elide: Text.ElideRight
             }
 
@@ -261,13 +267,14 @@ Item {
                                 id: contentLabel
 
                                 text: textRole ? (model[textRole] !== undefined ? model[textRole] : modelData[textRole]) : modelData
+
                                 Layout.alignment: Qt.AlignVCenter
                                 Layout.fillWidth: true
 
                                 elide: Text.ElideRight
 
                                 color: delegateItem.selected ? Theme.primaryColor
-                                        : darkBackground ? Theme.dark.textColor : Theme.light.textColor
+                                        : delegateItem.darkBackground ? Theme.dark.textColor : Theme.light.textColor
 
                                 visible: !contentItem.visible
                             }
@@ -278,7 +285,7 @@ Item {
 
                             Layout.alignment: Qt.AlignVCenter
 
-                            color: darkBackground ? Theme.dark.subTextColor : Theme.light.subTextColor
+                            color: delegateItem.darkBackground ? Theme.dark.subTextColor : Theme.light.subTextColor
                             elide: Text.ElideRight
 
                             visible: text.length > 0
