@@ -149,10 +149,21 @@ Item {
 
                 interactive: true
 
-                delegate: Standard {
+                delegate: Item {
                     id: delegateItem
 
-                    text: textRole ? (model[textRole] !== undefined ? model[textRole] : modelData[textRole]) : modelData
+                    property bool selected
+                    property bool darkBackground
+                    property bool showDivider: false
+
+                    property alias itemLabel: contentLabel
+                    property alias itemValueLabel: valueLabel
+                    property alias text: contentLabel.text
+                    property alias valueText: valueLabel.text
+
+                    property int margins: 16 * Units.dp
+                    property int dividerInset: 0
+
                     property var itemValue: valueRole ?
                                 (model[valueRole] !== undefined ? model[valueRole] : modelData[valueRole]): modelData
 
@@ -161,11 +172,119 @@ Item {
                         itemSelected(index)
                         menu.close()
                     }
-                }
-            }
 
-            Scrollbar {
-                flickableItem: listView
+                    anchors {
+                        left: parent ? parent.left : undefined
+                        right: parent ? parent.right : undefined
+                    }
+
+                    signal clicked()
+                    signal pressAndHold()
+
+                    Rectangle {
+                        id: rect
+                        anchors.fill: parent
+                        property color backgroundColor: "transparent"
+                        color: Qt.tint(backgroundColor, tintColor)
+
+                        property color tintColor: delegateItem.selected
+                                   ? Qt.rgba(0,0,0,0.05)
+                                   : contentInk.containsMouse ? Qt.rgba(0,0,0,0.03) : Qt.rgba(0,0,0,0)
+
+                        radius: 0
+                        antialiasing: parent.rotation || radius > 0 ? true : false
+                        clip: true
+
+                        Behavior on color {
+                            ColorAnimation { duration: 200 }
+                        }
+                    }
+
+                    ThinDivider {
+                        anchors.bottom: parent.bottom
+                        anchors.leftMargin: dividerInset
+
+                        visible: showDivider
+                        darkBackground: delegateItem.darkBackground
+                    }
+
+                    Ink {
+                        id: contentInk
+                        onClicked: delegateItem.clicked()
+                        onPressAndHold: delegateItem.pressAndHold()
+
+                        anchors.fill: parent
+
+                        enabled: delegateItem.enabled
+                        z: -1
+                    }
+
+                    opacity: enabled ? 1 : 0.6
+                    implicitHeight: 48 * Units.dp
+                    height: 48 * Units.dp
+
+                    property alias content: contentItem.children
+
+                    implicitWidth: {
+                        var width = delegateItem.margins * 2
+
+                        if (contentItem.visible)
+                            width += contentItem.implicitWidth + row.spacing
+                        else
+                            width += label.implicitWidth + row.spacing
+
+                        return width
+                    }
+
+                    RowLayout {
+                        id: row
+                        anchors.fill: parent
+
+                        anchors.leftMargin: delegateItem.margins
+                        anchors.rightMargin: delegateItem.margins
+                        spacing: 16 * Units.dp
+
+                        ColumnLayout {
+                            Layout.alignment: Qt.AlignVCenter
+                            Layout.preferredHeight: parent.height
+
+                            Item {
+                                id: contentItem
+
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: parent.height
+
+                                visible: children.length > 0
+                            }
+
+                            SubheadingLabel {
+                                id: contentLabel
+
+                                text: textRole ? (model[textRole] !== undefined ? model[textRole] : modelData[textRole]) : modelData
+                                Layout.alignment: Qt.AlignVCenter
+                                Layout.fillWidth: true
+
+                                elide: Text.ElideRight
+
+                                color: delegateItem.selected ? Theme.primaryColor
+                                        : darkBackground ? Theme.dark.textColor : Theme.light.textColor
+
+                                visible: !contentItem.visible
+                            }
+                        }
+
+                        Label {
+                            id: valueLabel
+
+                            Layout.alignment: Qt.AlignVCenter
+
+                            color: darkBackground ? Theme.dark.subTextColor : Theme.light.subTextColor
+                            elide: Text.ElideRight
+
+                            visible: text.length > 0
+                        }
+                    }
+                }
             }
         }
     }
