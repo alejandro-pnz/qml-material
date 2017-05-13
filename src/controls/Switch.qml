@@ -34,6 +34,8 @@ Controls.Switch {
      */
     property bool darkBackground
 
+    checked: true
+
     style: ControlStyles.SwitchStyle {
         handle: View {
             width: 22 * Units.dp
