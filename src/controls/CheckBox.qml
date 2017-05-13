@@ -35,6 +35,8 @@ Controls.CheckBox {
 
     style: MaterialStyle.CheckBoxStyle {}
 
+    checked: true
+
     Ink {
         anchors {
             verticalCenter: parent.verticalCenter
