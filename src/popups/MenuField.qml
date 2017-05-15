@@ -65,6 +65,10 @@ Item {
 
     signal itemSelected(int index)
 
+    InstanceOf {
+        id: instance
+    }
+
     Ink {
         id: ink
         anchors.fill: parent
@@ -112,14 +116,26 @@ Item {
 
             SubheadingLabel {
                 id: label
-
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
-                text: (listView.model) ?
-                          listView.model instanceof Array ?
-                              textRole ? listView.model[selectedIndex][textRole] : listView.model[selectedIndex]
-                            : textRole ? listView.model.get(selectedIndex)[textRole] : listView.model.get(selectedIndex)
-                        : noItemsText
+                text: {
+                    var model = listView.model;
+                    if(model) {
+                        if(listView.currentItem) {
+                            return listView.currentItem.text
+                        } else if(model instanceof Array) {
+                            return model[selectedIndex] ? textRole ? model[selectedIndex][textRole] : model[selectedIndex] : noItemsText;
+                        } else if(instance.is("ListModel", model)) {
+                            return model.get(selectedIndex) ? textRole ? model.get(selectedIndex)[textRole] : model.get(selectedIndex) : noItemsText;
+                        } else if(typeof model.data === 'function') {
+                            return textRole ? model.data(model.index(selectedIndex, 0), textRole) : model.data(model.index(selectedIndex, 0))
+                        } else {
+                            return noItemsText;
+                        }
+                    }
+                    else
+                        return noItemsText;
+                }
 
                 elide: Text.ElideRight
             }
