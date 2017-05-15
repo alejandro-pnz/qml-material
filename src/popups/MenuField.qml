@@ -77,10 +77,6 @@ Item {
 
     signal itemSelected(int index)
 
-    InstanceOf {
-        id: instance
-    }
-
     Ink {
         id: ink
         anchors.fill: parent
