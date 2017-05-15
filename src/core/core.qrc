@@ -16,6 +16,5 @@
         <file>awesome.js</file>
         <file>utils.js</file>
         <file>ViewGlow.qml</file>
-        <file>InstanceOf.qml</file>
     </qresource>
 </RCC>

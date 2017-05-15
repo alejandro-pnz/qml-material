@@ -61,6 +61,18 @@ Item {
     property bool hasHelperText: helperText.length > 0
     property string noItemsText: ""
 
+    property ListModel __ListModel;
+
+    function isListModel(o) {
+        try {
+            __ListModel = o;
+            return true;
+        } catch(e) {
+            console.log(e)
+            return false;
+        }
+    }
+
     readonly property rect inputRect: Qt.rect(spinBox.x, spinBox.y, spinBox.width, spinBox.height)
 
     signal itemSelected(int index)
@@ -125,7 +137,7 @@ Item {
                             return listView.currentItem.text
                         } else if(model instanceof Array) {
                             return model[selectedIndex] ? textRole ? model[selectedIndex][textRole] : model[selectedIndex] : noItemsText;
-                        } else if(instance.is("ListModel", model)) {
+                        } else if(instance.isListModel(model)) {
                             return model.get(selectedIndex) ? textRole ? model.get(selectedIndex)[textRole] : model.get(selectedIndex) : noItemsText;
                         } else if(typeof model.data === 'function') {
                             return textRole ? model.data(model.index(selectedIndex, 0), textRole) : model.data(model.index(selectedIndex, 0))
