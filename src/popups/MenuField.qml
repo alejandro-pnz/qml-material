@@ -133,7 +133,7 @@ Item {
                             return listView.currentItem.text
                         } else if(model instanceof Array) {
                             return model[selectedIndex] ? textRole ? model[selectedIndex][textRole] : model[selectedIndex] : noItemsText;
-                        } else if(instance.isListModel(model)) {
+                        } else if(isListModel(model)) {
                             return model.get(selectedIndex) ? textRole ? model.get(selectedIndex)[textRole] : model.get(selectedIndex) : noItemsText;
                         } else if(typeof model.data === 'function') {
                             return textRole ? model.data(model.index(selectedIndex, 0), textRole) : model.data(model.index(selectedIndex, 0))
