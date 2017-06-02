@@ -39,7 +39,7 @@ BottomSheet {
             text: title
             visible: title !== ""
             height: 56 * Units.dp
-            font.pixelSize: 15
+            font.pointSize: 15
             font.weight: Font.Normal
             backgroundColor: "white"
             elevation: listView.atYBeginning ? 0 : 1

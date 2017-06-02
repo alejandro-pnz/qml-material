@@ -326,7 +326,7 @@ Item {
         text: field.placeholderText
         visible: floatingLabel
 
-        font.pixelSize: 12 * Units.dp
+        font.pointSize: 12
 
         anchors.top: parent.top
 
@@ -366,7 +366,7 @@ Item {
         }
 
         visible: hasHelperText
-        font.pixelSize: 12 * Units.dp
+        font.pointSize: 12
         color: field.hasError ? field.errorColor : Qt.darker(Theme.light.hintColor)
 
         Behavior on color {

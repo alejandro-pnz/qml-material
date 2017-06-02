@@ -19,7 +19,7 @@ import Material 0.3
  */
 Text {
     id: label
-    font.pixelSize: 13
+    font.pointSize: 13
     font.family: "Roboto"
     font.weight: Font.Normal
     font.capitalization: Font.MixedCase

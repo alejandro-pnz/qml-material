@@ -12,7 +12,7 @@ Item {
 
         TextField {
             text: "Big Field with text"
-            font.pixelSize: dp(32)
+            font.pointSize: 32
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
