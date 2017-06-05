@@ -40,6 +40,7 @@ Item {
 
     property color accentColor: Theme.accentColor
     property color errorColor: "#F44336"
+    property color labelColor: "black"
 
     property alias model: listView.model
 
@@ -124,6 +125,7 @@ Item {
 
             SubheadingLabel {
                 id: label
+                color: labelColor
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
                 text: {
@@ -150,7 +152,7 @@ Item {
 
             Icon {
                 id: dropDownIcon
-
+                color: labelColor
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                 Layout.preferredWidth: 24 * Units.dp
                 Layout.preferredHeight: 24 * Units.dp
@@ -329,8 +331,6 @@ Item {
         font.pixelSize: 12 * Units.dp
 
         anchors.top: parent.top
-
-        color: Theme.light.hintColor
     }
 
     Rectangle {
