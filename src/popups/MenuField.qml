@@ -60,6 +60,7 @@ Item {
     property bool floatingLabel: false
     property bool hasError: false
     property bool hasHelperText: helperText.length > 0
+    property bool ignoreMenuOffset: false
     property string noItemsText: ""
 
     property ListModel __ListModel;
@@ -88,7 +89,7 @@ Item {
             if(listView.currentItem) {
                 listView.positionViewAtIndex(listView.currentIndex, ListView.Center)
                 var offset = listView.currentItem.itemLabel.mapToItem(menu, 0, 0)
-                menu.open(label, 0, -offset.y)
+                menu.open(label, 0, ignoreMenuOffset ? 0 : -offset.y)
             } else if (model !== undefined) {
                 menu.open(label, 0, 0)
             }
@@ -178,6 +179,7 @@ Item {
 
                 width: menu.width
                 height: count > 0 ? menu.height : 0
+                anchors.top: menu.top
 
                 interactive: true
 
