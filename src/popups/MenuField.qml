@@ -179,7 +179,6 @@ Item {
 
                 width: menu.width
                 height: count > 0 ? menu.height : 0
-                anchors.top: menu.top
 
                 interactive: true
 
