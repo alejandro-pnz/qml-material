@@ -24,12 +24,16 @@ Page {
 
     property var page
 
+    property var sidebar
+
     function navigate(page) {
         navPage.page = page
         navDrawer.close()
     }
 
     onNavDrawerChanged: navDrawer.parent = navPage
+
+    onSidebarChanged: sidebar.parent = navPage
 
     onPageChanged: stackView.push({ item: page, replace: true })
 
